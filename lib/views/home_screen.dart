@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:clean_metadata/models/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/home_viewmodel.dart';
@@ -16,7 +17,12 @@ class HomeScreen extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               automaticallyImplyLeading: false,
-              title: const Text('Image Metadata Reader & Clearer'),
+              backgroundColor: primaryColor,
+              surfaceTintColor: primaryColor,
+              title: const Text(
+                'MaTaDaTa Reader & Clearer',
+                style: TextStyle(color: Colors.white, fontSize: 14),
+              ),
             ),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
@@ -29,19 +35,39 @@ class HomeScreen extends StatelessWidget {
                   if (vm.isLoading) const CircularProgressIndicator(),
                   if (vm.error != null)
                     Text(vm.error!, style: const TextStyle(color: Colors.red)),
-                  Text(vm.metadata),
+                  Text(
+                    vm.metadata,
+                    maxLines: 300,
+                    softWrap: true,
+                    textScaler: const TextScaler.linear(1.0),
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   if (vm.clearedImagePath != null)
                     Column(
                       children: [
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 8),
+                        const Divider(),
+                        const SizedBox(height: 8),
                         Text('Cleared image saved at:'),
                         Text(
                           vm.clearedImagePath!,
                           style: const TextStyle(fontSize: 12),
                         ),
+                        const SizedBox(height: 26),
                         ElevatedButton.icon(
-                          icon: const Icon(Icons.share),
-                          label: const Text('Share Cleared Image'),
+                          icon: const Icon(Icons.share, color: primaryColor),
+                          label: const Text(
+                            'Share Cleared Image',
+                            style: TextStyle(color: primaryColor),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: secondaryColor,
+                            surfaceTintColor: secondaryColor,
+                          ),
                           onPressed: vm.shareClearedImage,
                         ),
                       ],
@@ -56,7 +82,7 @@ class HomeScreen extends StatelessWidget {
                   heroTag: 'pickImage',
                   onPressed: vm.isLoading ? null : () => vm.pickImage(context),
                   tooltip: 'Pick Image',
-                  backgroundColor: Colors.indigo,
+                  backgroundColor: primaryColor,
                   child: const Icon(Icons.image, color: Colors.white),
                 ),
                 const SizedBox(height: 10),
@@ -67,8 +93,8 @@ class HomeScreen extends StatelessWidget {
                         ? null
                         : () => vm.clearAndSaveMetadata(context),
                     tooltip: 'Clear Metadata & Save',
-                    backgroundColor: Colors.indigo,
-                    child: const Icon(Icons.clear_all, color: Colors.white),
+                    backgroundColor: primaryColor,
+                    child: const Icon(Icons.download, color: Colors.white),
                   ),
                 if (vm.selectedImage != null)
                   Padding(

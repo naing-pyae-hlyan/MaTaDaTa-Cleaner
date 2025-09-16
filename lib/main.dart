@@ -1,3 +1,4 @@
+import 'package:clean_metadata/models/consts.dart';
 import 'package:clean_metadata/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,8 +21,8 @@ class MainApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       theme: ThemeData(
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        primaryColor: Colors.indigo,
-        scaffoldBackgroundColor: Colors.white54,
+        primaryColor: primaryColor,
+        scaffoldBackgroundColor: backgroundColor,
       ),
       home: const SafeArea(child: SplashScreen()),
     );
