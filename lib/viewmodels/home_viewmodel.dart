@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:exif/exif.dart';
 import 'package:image/image.dart' as img;
-import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
 class HomeViewModel extends ChangeNotifier {
@@ -75,10 +74,11 @@ class HomeViewModel extends ChangeNotifier {
         return;
       }
       final img.Image cleanImage = img.Image.from(originalImage);
-      final directory = await getTemporaryDirectory();
-      final String tempPath = directory.path;
-      final String newFilePath =
-          '$tempPath/cleared_${DateTime.now().millisecondsSinceEpoch}.jpg';
+      // Save the cleaned image as a copy in the same directory as the original image
+      final originalPath = _selectedImage!.path;
+      final originalName = _selectedImage!.name;
+      final originalDir = File(originalPath).parent.path;
+      final String newFilePath = '$originalDir/cleared_$originalName.jpg';
       final File newFile = File(newFilePath);
       newFile.writeAsBytesSync(img.encodeJpg(cleanImage));
       _clearedImagePath = newFilePath;
