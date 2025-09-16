@@ -100,7 +100,7 @@ class HomeViewModel extends ChangeNotifier {
     if (_clearedImagePath != null) {
       await SharePlus.instance.share(
         ShareParams(
-          title: "MaTaDaTa App",
+          title: "MeTaDaTa App",
           subject: "Metadata is cleared!",
           previewThumbnail: XFile(_clearedImagePath!),
           files: [XFile(_clearedImagePath!)],

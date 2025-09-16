@@ -1,5 +1,6 @@
 name: clean_metadata
-description: "A new Flutter project."
+license: MIT
+description: "Clean MeTaDaTa"
 publish_to: 'none'
 version: 0.1.0
 

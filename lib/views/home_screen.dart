@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: primaryColor,
               surfaceTintColor: primaryColor,
               title: const Text(
-                'MaTaDaTa Reader & Clearer',
+                'MeTaDaTa Reader & Clearer',
                 style: TextStyle(color: Colors.white, fontSize: 14),
               ),
             ),
